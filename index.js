@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
-const port = process.env.PORT || 5002;
+const port = process.env.PORT || 5000;
+
 // JWT Token 
 const jwt = require('jsonwebtoken');
 const app = express();
@@ -20,7 +21,7 @@ async function run() {
         // order collection
         const orderCollection = client.db("booksaw").collection("order");
 
-        // AUTH
+        //JWT AUTH
         app.post("/login", async(req, res) => {
             const user = req.body;
             const accesToken = jwt.sign(user, "89e8a8d9ec14fa879dd8e27f61019868a4e62ccd06dccf589acd7a10f17252154098a3da34ee92d7ecc67308ac19767f3eb72468ff4034dcf89b41e8587d8ce7", {
