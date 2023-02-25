@@ -22,13 +22,13 @@ async function run() {
         const orderCollection = client.db("booksaw").collection("order");
 
         //JWT AUTH
-        app.post("/login", async(req, res) => {
-            const user = req.body;
-            const accesToken = jwt.sign(user, "89e8a8d9ec14fa879dd8e27f61019868a4e62ccd06dccf589acd7a10f17252154098a3da34ee92d7ecc67308ac19767f3eb72468ff4034dcf89b41e8587d8ce7", {
-                expiresIn: "1d"
-            });
-            res.send({accesToken})
-        })
+        // app.post("/login", async(req, res) => {
+        //     const user = req.body;
+        //     const accesToken = jwt.sign(user, "89e8a8d9ec14fa879dd8e27f61019868a4e62ccd06dccf589acd7a10f17252154098a3da34ee92d7ecc67308ac19767f3eb72468ff4034dcf89b41e8587d8ce7", {
+        //         expiresIn: "1d"
+        //     });
+        //     res.send({accesToken})
+        // })
 
         // find the books from the server
         app.get("/book", async (req, res) => {
@@ -82,14 +82,14 @@ async function run() {
         })
 
         // pagination api
-        // app.get("/bookCount", async (req, res) => {
-        //     const query = {};
-        //     const cursor = booksCollection.find(query);
-        //     const count = await cursor.count();
-        //     //  One to convert in JSON file
-        //     //  res.json(count) 
-        //     res.send({ count });
-        // })
+        app.get("/bookCount", async (req, res) => {
+            const query = {};
+            const cursor = booksCollection.find(query);
+            const count = await cursor.count();
+            //  One to convert in JSON file
+            //  res.json(count) 
+            res.send({ count });
+        })
 
     }
     finally {
